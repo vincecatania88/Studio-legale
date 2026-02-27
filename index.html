@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avv. Valerio Iorio & Partners starl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --beige:        #E8E0D0;
+    --beige-light:  #F4EFE6;
+    --beige-dark:   #D6CAB8;
+    --wood:         #8B6F47;
+    --oak:          #A07850;
+    --oak-light:    #C4A06A;
+    --steel-blue:   #4A5568;
+    --blue-grey:    #6B7280;
+    --cement:       #9CA3AF;
+    --cement-light: #D1D5DB;
+    --brass:        #B8963E;
+    --brass-light:  #D4A843;
+    --linen:        #FAF6F0;
+    --dark:         #1C1A18;
+    --text:         #2D2A26;
+    --text-muted:   #6B6358;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--linen);
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--beige-light); }
+  ::-webkit-scrollbar-thumb { background: var(--oak); }
+
+  .page { display: none; opacity: 0; transition: opacity 0.5s ease; }
+  .page.active { display: block; animation: fadeIn 0.5s ease forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250, 246, 240, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--beige-dark);
+    padding: 0 5%;
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--dark); cursor: pointer; text-decoration: none; line-height: 1.3;
+  }
+  .nav-logo span { display: block; font-size: 0.65rem; font-family: 'Jost', sans-serif; font-weight: 200; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-top: 2px; }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400;
+    color: var(--text-muted); text-decoration: none;
+    position: relative; padding-bottom: 3px; cursor: pointer; transition: color 0.3s;
+  }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--brass); transition: width 0.3s ease; }
+  .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-contact-btn { background: var(--dark); color: var(--beige-light) !important; padding: 9px 24px !important; border: none; font-size: 0.68rem !important; letter-spacing: 0.16em !important; transition: background 0.3s !important; }
+  .nav-contact-btn::after { display: none !important; }
+  .nav-contact-btn:hover { background: var(--brass) !important; color: var(--dark) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh; background: var(--dark);
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(184, 150, 62, 0.06) 0%, transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(232, 224, 208, 0.03) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(232, 224, 208, 0.03) 80px);
+    pointer-events: none;
+  }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 12rem 6% 6rem; position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); font-weight: 400; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--brass); }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--beige-light); margin-bottom: 2.5rem; }
+  .hero-title em { font-style: italic; color: var(--oak-light); }
+  .hero-subtitle { font-size: 0.85rem; color: rgba(232, 224, 208, 0.55); font-weight: 300; letter-spacing: 0.04em; max-width: 380px; margin-bottom: 3.5rem; line-height: 1.9; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 1.2rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--beige-light); background: transparent; border: 1px solid rgba(232, 224, 208, 0.25); padding: 1.1rem 2.2rem; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+  .hero-cta:hover { border-color: var(--brass); color: var(--brass); background: rgba(184, 150, 62, 0.06); }
+  .hero-cta svg { width: 16px; transition: transform 0.3s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, var(--dark) 0%, transparent 40%); z-index: 1; }
+  .hero-bg-fallback { width: 100%; height: 100%; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(160, 120, 80, 0.2) 0%, transparent 60%), linear-gradient(135deg, rgba(184, 150, 62, 0.08) 0%, rgba(28, 26, 24, 0.8) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 16rem; font-weight: 300; color: rgba(184, 150, 62, 0.07); user-select: none; letter-spacing: -0.05em; }
+  .hero-scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232, 224, 208, 0.3); z-index: 10; cursor: pointer; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(184,150,62,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 7rem 5%; }
+  .section-label { font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--brass); font-weight: 400; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--brass); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 300; line-height: 1.15; color: var(--dark); margin-bottom: 1.5rem; }
+  .section-title em { font-style: italic; color: var(--oak); }
+  .section-divider { width: 60px; height: 1px; background: var(--oak-light); margin: 2.5rem 0; }
+
+  /* ─── STUDIO SECTION ─── */
+  .studio-section { background: var(--beige-light); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .studio-text p { font-size: 0.88rem; color: var(--text-muted); line-height: 2; margin-bottom: 1.2rem; }
+  .studio-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--beige-dark); }
+  .stat-item { background: var(--linen); padding: 2.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.3s; }
+  .stat-item:hover { background: var(--dark); }
+  .stat-item:hover .stat-number, .stat-item:hover .stat-label { color: var(--beige-light); }
+  .stat-item:hover .stat-label { color: var(--brass); }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; line-height: 1; color: var(--dark); transition: color 0.3s; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
+
+  /* ─── AREAS ─── */
+  .areas-section { background: var(--dark); }
+  .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; background: rgba(232, 224, 208, 0.06); }
+  .area-card { background: var(--dark); padding: 2.5rem; cursor: pointer; position: relative; overflow: hidden; transition: all 0.4s; border: 1px solid rgba(232, 224, 208, 0.04); }
+  .area-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brass); transition: width 0.4s ease; }
+  .area-card:hover { background: rgba(232, 224, 208, 0.04); }
+  .area-card:hover::before { width: 100%; }
+  .area-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(184,150,62,0.4); margin-bottom: 1.5rem; font-weight: 300; display: block; }
+  .area-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--beige-light); line-height: 1.3; margin-bottom: 1rem; }
+  .area-arrow { position: absolute; bottom: 1.8rem; right: 1.8rem; color: var(--brass); opacity: 0; transition: opacity 0.3s, transform 0.3s; font-size: 1.2rem; }
+  .area-card:hover .area-arrow { opacity: 1; transform: translate(3px, -3px); }
+
+  /* ─── TEAM ─── */
+  .team-section { background: var(--beige-light); }
+  .team-intro { max-width: 600px; margin-bottom: 4rem; }
+  .team-intro p { font-size: 0.88rem; color: var(--text-muted); line-height: 2; }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--beige-dark); }
+  .team-card { background: var(--linen); overflow: hidden; cursor: pointer; transition: all 0.4s; position: relative; }
+  .team-card:hover { background: var(--dark); z-index: 2; transform: scale(1.02); }
+  .team-photo { height: 220px; overflow: hidden; position: relative; background: var(--beige-dark); }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7) sepia(10%); transition: all 0.4s; }
+  .team-card:hover .team-photo img { filter: saturate(0.5) sepia(20%); }
+  .team-photo-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--beige-dark); font-weight: 300; background: linear-gradient(135deg, var(--beige-dark), var(--cement-light)); }
+  .team-info { padding: 1.5rem 1.8rem 2rem; }
+  .team-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; color: var(--dark); margin-bottom: 0.3rem; transition: color 0.3s; line-height: 1.3; }
+  .team-card:hover .team-name { color: var(--beige-light); }
+  .team-role { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); font-weight: 400; }
+  .team-bio { font-size: 0.75rem; color: rgba(232, 224, 208, 0.5); line-height: 1.8; margin-top: 0.8rem; display: none; }
+  .team-card:hover .team-bio { display: block; }
+
+  /* ─── CONTACT ─── */
+  .contact-section { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+  .contact-left { padding: 8rem 6%; display: flex; flex-direction: column; justify-content: center; }
+  .contact-left .section-title { color: var(--beige-light); }
+  .contact-details { margin-top: 3rem; display: flex; flex-direction: column; gap: 2.5rem; }
+  .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .contact-icon { width: 40px; height: 40px; border: 1px solid rgba(184,150,62,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--brass); font-size: 0.9rem; }
+  .contact-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin-bottom: 0.4rem; }
+  .contact-value { font-size: 0.88rem; color: var(--beige-light); line-height: 1.7; }
+  .contact-right { background: var(--beige-light); padding: 8rem 6%; display: flex; flex-direction: column; justify-content: center; }
+  .contact-right .section-title { color: var(--dark); }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label { display: block; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; }
+  .form-input, .form-textarea { width: 100%; background: var(--linen); border: 1px solid var(--beige-dark); border-bottom: 1px solid var(--oak-light); padding: 0.9rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--text); font-weight: 300; transition: all 0.3s; outline: none; appearance: none; border-radius: 0; }
+  .form-input:focus, .form-textarea:focus { border-color: var(--brass); background: var(--beige-light); box-shadow: 0 2px 20px rgba(184,150,62,0.08); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .submit-btn { margin-top: 1rem; background: var(--dark); color: var(--beige-light); border: none; padding: 1.1rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem; }
+  .submit-btn:hover { background: var(--brass); color: var(--dark); }
+
+  /* ─── FOOTER ─── */
+  footer { background: #100E0C; padding: 4rem 5% 2rem; border-top: 1px solid rgba(232,224,208,0.06); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--beige-light); font-weight: 400; letter-spacing: 0.04em; margin-bottom: 1rem; }
+  .footer-tagline { font-size: 0.75rem; color: rgba(232,224,208,0.3); line-height: 1.8; max-width: 260px; }
+  .footer-col h4 { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 1.5rem; font-weight: 400; }
+  .footer-col a, .footer-col p { display: block; font-size: 0.78rem; color: rgba(232,224,208,0.4); text-decoration: none; margin-bottom: 0.7rem; cursor: pointer; transition: color 0.2s; line-height: 1.6; }
+  .footer-col a:hover { color: var(--beige-light); }
+  .footer-bottom { border-top: 1px solid rgba(232,224,208,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.7rem; color: rgba(232,224,208,0.2); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.7rem; color: rgba(232,224,208,0.2); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  .footer-links a:hover { color: var(--brass); }
+
+  /* ─── PAGE: LO STUDIO ─── */
+  .lo-studio-hero { background: var(--dark); padding: 14rem 5% 8rem; position: relative; overflow: hidden; }
+  .lo-studio-hero::after { content: 'STORIA'; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-size: 18rem; font-weight: 300; line-height: 1; color: rgba(232, 224, 208, 0.025); pointer-events: none; user-select: none; }
+  .storia-section { background: var(--linen); display: grid; grid-template-columns: 1fr 2px 1fr; gap: 6rem; align-items: start; padding: 8rem 5%; }
+  .storia-divider { background: linear-gradient(to bottom, transparent, var(--beige-dark), transparent); width: 1px; align-self: stretch; }
+  .storia-year { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(184,150,62,0.15); line-height: 1; margin-bottom: 1rem; }
+  .storia-text { font-size: 0.88rem; color: var(--text-muted); line-height: 2; }
+  .storia-text p { margin-bottom: 1rem; }
+  .valori-section { background: var(--beige-light); }
+  .valori-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; background: var(--beige-dark); }
+  .valore-item { background: var(--linen); padding: 3rem; transition: background 0.3s; }
+  .valore-item:hover { background: var(--dark); }
+  .valore-item:hover h3, .valore-item:hover p { color: var(--beige-light); }
+  .valore-item:hover .valore-icon { color: var(--brass); }
+  .valore-icon { font-size: 1.8rem; color: var(--oak); margin-bottom: 1.5rem; transition: color 0.3s; }
+  .valore-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--dark); margin-bottom: 1rem; transition: color 0.3s; }
+  .valore-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; transition: color 0.3s; }
+
+  /* ─── PAGE: AREE ─── */
+  .aree-hero { background: var(--beige-light); padding: 14rem 5% 6rem; position: relative; overflow: hidden; }
+  .aree-hero::after { content: 'DIRITTO'; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-size: 14rem; font-weight: 300; color: rgba(28,26,24,0.03); pointer-events: none; user-select: none; }
+  .aree-list { padding: 0 5% 6rem; background: var(--linen); }
+  .area-row { display: grid; grid-template-columns: 80px 1fr 200px; align-items: center; padding: 2.5rem 0; border-bottom: 1px solid var(--beige-dark); cursor: pointer; transition: all 0.3s; gap: 2rem; }
+  .area-row:hover { padding-left: 1rem; }
+  .area-row:hover .area-row-name { color: var(--brass); }
+  .area-row:first-child { border-top: 1px solid var(--beige-dark); }
+  .area-row-num { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--cement); }
+  .area-row-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; transition: color 0.3s; }
+  .area-row-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-align: right; }
+
+  /* ─── PAGE: CONTATTI standalone ─── */
+  .contatti-hero { background: var(--dark); padding: 14rem 5% 6rem; position: relative; overflow: hidden; }
+  .contatti-hero::after { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(184,150,62,0.06), transparent 70%); right: 10%; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+  /* ─── MOBILE ─── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--dark); transition: all 0.3s; }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--dark); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--beige-light); text-decoration: none; cursor: pointer; transition: color 0.3s; }
+  .mobile-menu a:hover { color: var(--brass); }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .page-header-breadcrumb { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,224,208,0.35); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
+  .page-header-breadcrumb span { color: var(--brass); }
+
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .studio-section { grid-template-columns: 1fr; gap: 3rem; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .contact-section { grid-template-columns: 1fr; }
+    .storia-section { grid-template-columns: 1fr; gap: 3rem; }
+    .storia-divider { display: none; }
+    .valori-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .area-row { grid-template-columns: 40px 1fr; }
+    .area-row-tag { display: none; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .aree-hero::after, .lo-studio-hero::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" onclick="showPage('home')">
+    Avv. Valerio Iorio
+    <span>&amp; Partners starl</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="showPage('lo-studio')" id="nav-lo-studio">Lo Studio</a></li>
+    <li><a onclick="showPage('aree')" id="nav-aree">Aree di Competenza</a></li>
+    <li><a onclick="showPage('professionisti')" id="nav-professionisti">Lo Staff</a></li>
+    <li><a onclick="showPage('contatti')" id="nav-contatti" class="nav-contact-btn">Contatti</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home'); toggleMobileMenu()">Home</a>
+  <a onclick="showPage('lo-studio'); toggleMobileMenu()">Lo Studio</a>
+  <a onclick="showPage('aree'); toggleMobileMenu()">Aree di Competenza</a>
+  <a onclick="showPage('professionisti'); toggleMobileMenu()">Lo Staff</a>
+  <a onclick="showPage('contatti'); toggleMobileMenu()">Contatti</a>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <section class="hero" style="padding:0;">
+    <div class="hero-texture"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Salerno · Dal 1980</div>
+      <h1 class="hero-title">
+        Diritto Bancario.<br>
+        <em>NPLs & UTP.</em><br>
+        Eccellenza.
+      </h1>
+      <p class="hero-subtitle">
+        Studio specializzato in diritto bancario e finanziario con significativa competenza nella gestione giudiziale e stragiudiziale dei crediti di natura bancaria, NPLs ed UTP.
+      </p>
+      <a class="hero-cta" onclick="showPage('aree')">
+        Scopri le Aree di Competenza
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-fallback">§</div>
+    </div>
+    <div class="hero-scroll-indicator" onclick="document.getElementById('studio-anchor').scrollIntoView({behavior:'smooth'})">
+      <div class="scroll-line"></div>
+      Scorri
+    </div>
+  </section>
+
+  <!-- LO STUDIO -->
+  <section class="studio-section" id="studio-anchor">
+    <div class="studio-text reveal">
+      <div class="section-label">Lo Studio</div>
+      <h2 class="section-title">Specialisti in<br><em>diritto bancario</em></h2>
+      <div class="section-divider"></div>
+      <p>Lo Studio legale <strong>Avv. Valerio Iorio & Partners starl</strong> è specializzato in diritto bancario e finanziario e vanta una significativa competenza ed esperienza nella gestione giudiziale e stragiudiziale dei crediti di natura bancaria, NPLs ed UTP.</p>
+      <p>Fondato nel <strong>2019</strong>, lo studio ha rapidamente consolidato la propria reputazione come punto di riferimento a Salerno e in tutta Italia, grazie alla collaborazione con prestigiosi studi legali di Roma, Milano e Napoli.</p>
+      <p>Opera su tutto il territorio nazionale attraverso un fitto network convenzionato di corrispondenti selezionati ed efficienti, che consentono di patrocinare giudizi in tutti i fori italiani.</p>
+      <br>
+      <a class="hero-cta" onclick="showPage('lo-studio')" style="border-color:var(--beige-dark);color:var(--dark);font-size:0.68rem;">
+        Scopri la storia dello studio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="studio-stats reveal">
+      <div class="stat-item">
+        <span class="stat-number">1980</span>
+        <span class="stat-label">Fondazione originaria</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2019</span>
+        <span class="stat-label">Costituzione societaria</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">8+</span>
+        <span class="stat-label">Professionisti e collaboratori</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Copertura nazionale</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREE -->
+  <section class="areas-section">
+    <div class="section-label" style="color:var(--brass)">Competenze</div>
+    <h2 class="section-title" style="color:var(--beige-light)">Le nostre <em>aree</em><br>di intervento</h2>
+    <div class="areas-grid">
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">01</span>
+        <div class="area-name">Diritto Bancario e Finanziario</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">02</span>
+        <div class="area-name">Gestione NPLs e Crediti Non Performing</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">03</span>
+        <div class="area-name">Diritto Concorsuale e Fallimentare</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">04</span>
+        <div class="area-name">Crisi d'Impresa e Ristrutturazione</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">05</span>
+        <div class="area-name">Esecuzioni Immobiliari e Mobiliari</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">06</span>
+        <div class="area-name">Contenzioso Passivo Bancario</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">07</span>
+        <div class="area-name">Due Diligence e Loan Management</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">08</span>
+        <div class="area-name">Gestione Stragiudiziale UTP</div>
+        <span class="area-arrow">↗</span>
+      </div>
+      <div class="area-card reveal" onclick="showPage('aree')">
+        <span class="area-num">09</span>
+        <div class="area-name">Responsabilità Penale e Medica</div>
+        <span class="area-arrow">↗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM PREVIEW -->
+  <section class="team-section">
+    <div class="team-intro">
+      <div class="section-label">Lo Staff</div>
+      <h2 class="section-title">I <em>Fondatori</em><br>dello Studio</h2>
+      <div class="section-divider"></div>
+      <p>Un team di professionisti altamente specializzati nel diritto bancario e finanziario, con decenni di esperienza cumulata al servizio di primari istituti di credito e società di gestione di NPL.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal" onclick="showPage('professionisti')">
+        <div class="team-photo"><div class="team-photo-fallback">VI</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Valerio Iorio</div>
+          <div class="team-role">Socio Fondatore</div>
+        </div>
+      </div>
+      <div class="team-card reveal" onclick="showPage('professionisti')">
+        <div class="team-photo"><div class="team-photo-fallback">CI</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Carmen Iorio</div>
+          <div class="team-role">Socio Fondatore</div>
+        </div>
+      </div>
+      <div class="team-card reveal" onclick="showPage('professionisti')">
+        <div class="team-photo"><div class="team-photo-fallback">AC</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Antonella Camera</div>
+          <div class="team-role">Partner Principale</div>
+        </div>
+      </div>
+      <div class="team-card reveal" onclick="showPage('professionisti')" style="display:flex;align-items:center;justify-content:center;background:var(--dark);cursor:pointer;">
+        <div style="text-align:center;padding:2rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--brass);font-weight:300;margin-bottom:0.5rem;">+8</div>
+          <div style="font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(232,224,208,0.4);">Tutto lo staff</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Avv. Valerio Iorio<br>&amp; Partners starl</div>
+        <p class="footer-tagline">Specialisti in diritto bancario, NPLs e gestione della crisi d'impresa. Salerno e tutta Italia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('lo-studio')">Lo Studio</a>
+        <a onclick="showPage('aree')">Aree di Competenza</a>
+        <a onclick="showPage('professionisti')">Lo Staff</a>
+        <a onclick="showPage('contatti')">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Aree Principali</h4>
+        <a onclick="showPage('aree')">Diritto Bancario</a>
+        <a onclick="showPage('aree')">NPLs & UTP</a>
+        <a onclick="showPage('aree')">Diritto Fallimentare</a>
+        <a onclick="showPage('aree')">Crisi d'Impresa</a>
+        <a onclick="showPage('aree')">Esecuzioni Immobiliari</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <p>Corso G. Garibaldi, 8<br>84121 Salerno (SA)</p>
+        <p>info@studiolegaleiorio.it</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Avv. Valerio Iorio & Partners starl — Tutti i diritti riservati</p>
+      <div class="footer-links">
+        <a>Privacy Policy</a>
+        <a>Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: LO STUDIO
+══════════════════════════════════ -->
+<div class="page" id="page-lo-studio">
+  <div class="lo-studio-hero">
+    <div class="page-header-breadcrumb">Home <span>/ Lo Studio</span></div>
+    <div class="section-label">Dal 1980</div>
+    <h1 class="section-title" style="color:var(--beige-light);font-size:clamp(2.5rem,4.5vw,5rem);max-width:700px">
+      Una scelta<br><em>luminosa</em>
+    </h1>
+    <p style="color:rgba(232,224,208,0.5);max-width:560px;margin-top:1.5rem;font-size:0.88rem;line-height:2;">
+      La storia di uno studio nato dall'unione di esperienza e visione, diventato punto di riferimento nel diritto bancario italiano.
+    </p>
+  </div>
+
+  <section class="storia-section">
+    <div class="storia-block reveal">
+      <div class="storia-year">1980</div>
+      <div class="section-label">Le Origini</div>
+      <div class="storia-text">
+        <p>L'avv. Valerio Iorio è titolare dello studio legale sin dal 1980 e cultore della dottrina bancaria. Nel corso dei decenni ha maturato esperienze professionali significative nel settore, quale legale esterno di prestigiosi istituti di credito e primari servicer, nonché legale fiduciario di altre società e compagnie anche di altri settori.</p>
+      </div>
+    </div>
+    <div class="storia-divider"></div>
+    <div class="storia-block reveal">
+      <div class="storia-year">2019</div>
+      <div class="section-label">La Fondazione Societaria</div>
+      <div class="storia-text">
+        <p>Nel 2019 l'avv. Valerio Iorio decide di fondare uno studio professionale in forma giuridica insieme alla figlia avv. Carmen Iorio, avvalendosi di numerosi partners esterni con i quali collaborava già da lunghi anni.</p>
+        <p>Una decisione luminosa, sia da un punto di vista professionale quanto personale, anche in termini di fidelizzazione con il team di lavoro. Lo studio ha così ottenuto il rinnovo, la conferma e l'avvio ex novo di numerose collaborazioni con società operanti nel settore bancario, cristallizzate con la sottoscrizione di convenzioni professionali.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--beige-light);padding:7rem 5%;">
+    <div class="section-label">La Rete</div>
+    <h2 class="section-title">Presenza <em>nazionale</em></h2>
+    <div class="section-divider"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+      <div>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:2;margin-bottom:1.2rem;">Lo studio ha la sua sede principale a <strong>Salerno</strong>, al Corso G. Garibaldi n. 8, ma opera su tutto il territorio nazionale attraverso un fitto network convenzionato di corrispondenti selezionati ed efficienti, che consentono di patrocinare giudizi in tutti i fori italiani.</p>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:2;margin-bottom:1.2rem;">Le forme di collaborazione esterna in via continuativa hanno consentito ai professionisti una crescita e specializzazione costante, rendendo lo studio negli anni a seguire un punto di riferimento nella città di Salerno e in tutta Italia grazie alla collaborazione con prestigiosi studi legali di <strong>Roma, Milano e Napoli</strong>.</p>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:2;">Lo studio ha inoltre sottoscritto una convenzione con un primario istituto di mediazione che opera su tutto il territorio nazionale.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--beige-dark);">
+        <div class="stat-item"><span class="stat-number">SA</span><span class="stat-label">Sede principale</span></div>
+        <div class="stat-item"><span class="stat-number">RM</span><span class="stat-label">Roma</span></div>
+        <div class="stat-item"><span class="stat-number">MI</span><span class="stat-label">Milano</span></div>
+        <div class="stat-item"><span class="stat-number">NA</span><span class="stat-label">Napoli</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="valori-section">
+    <div class="section-label">I Valori</div>
+    <h2 class="section-title">Principi che guidano<br>il nostro <em>lavoro</em></h2>
+    <div class="valori-grid">
+      <div class="valore-item reveal">
+        <div class="valore-icon">⚖</div>
+        <h3>Specializzazione</h3>
+        <p>Tutti i componenti dello studio sono specializzati nell'uso dei software gestionali multiutente utilizzati dalle banche e dalle società di gestione di NPL, tra cui EPC e PHOENIX.</p>
+      </div>
+      <div class="valore-item reveal">
+        <div class="valore-icon">◈</div>
+        <h3>Sinergia con il Cliente</h3>
+        <p>Un elevato livello di comunicazione e di sinergia con la clientela, nell'ottica del perseguimento dei comuni obiettivi di recupero, è alla base di ogni collaborazione professionale.</p>
+      </div>
+      <div class="valore-item reveal">
+        <div class="valore-icon">◉</div>
+        <h3>Aggiornamento Costante</h3>
+        <p>La costante formazione dei professionisti e l'aggiornamento puntuale ai referenti consentono un'efficiente ed efficace gestione di ogni singola posizione creditoria affidata.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Avv. Valerio Iorio<br>&amp; Partners starl</div>
+        <p class="footer-tagline">Specialisti in diritto bancario e NPLs. Dal 1980.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('lo-studio')">Lo Studio</a>
+        <a onclick="showPage('aree')">Aree di Competenza</a>
+        <a onclick="showPage('professionisti')">Lo Staff</a>
+        <a onclick="showPage('contatti')">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <p>Corso G. Garibaldi, 8 — 84121 Salerno</p>
+        <p>info@studiolegaleiorio.it</p>
+      </div>
+      <div class="footer-col"></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Avv. Valerio Iorio & Partners starl</p>
+      <div class="footer-links"><a>Privacy Policy</a><a>Cookie Policy</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: AREE DI COMPETENZA
+══════════════════════════════════ -->
+<div class="page" id="page-aree">
+  <div class="aree-hero">
+    <div class="page-header-breadcrumb">Home <span>/ Aree di Competenza</span></div>
+    <div class="section-label">Competenze Legali</div>
+    <h1 class="section-title" style="font-size:clamp(2.5rem,4.5vw,5rem)">
+      Le nostre <em>aree</em><br>di intervento
+    </h1>
+    <p style="max-width:560px;margin-top:1.5rem;color:var(--text-muted);font-size:0.88rem;line-height:2;">
+      Lo Studio è specializzato in diritto bancario, concorsuale, fallimentare, nella gestione della crisi d'impresa e finanziario, con significativa competenza ed esperienza nella gestione delle sofferenze bancarie e dei crediti non performing.
+    </p>
+  </div>
+
+  <div class="aree-list">
+    <div class="area-row reveal">
+      <div class="area-row-num">01</div>
+      <div class="area-row-name">Diritto Bancario e Finanziario</div>
+      <div class="area-row-tag">Banche · Istituti di Credito</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">02</div>
+      <div class="area-row-name">Gestione NPLs — Crediti Non Performing</div>
+      <div class="area-row-tag">NPL · Sofferenze</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">03</div>
+      <div class="area-row-name">Gestione UTP — Unlikely To Pay</div>
+      <div class="area-row-tag">UTP · Crediti Deteriorati</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">04</div>
+      <div class="area-row-name">Diritto Concorsuale e Fallimentare</div>
+      <div class="area-row-tag">Fallimento · Curatele</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">05</div>
+      <div class="area-row-name">Crisi d'Impresa e Ristrutturazione</div>
+      <div class="area-row-tag">Impresa · Accordi</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">06</div>
+      <div class="area-row-name">Esecuzioni Immobiliari e presso Terzi</div>
+      <div class="area-row-tag">Immobili · Pignoramenti</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">07</div>
+      <div class="area-row-name">Contenzioso Bancario Attivo e Passivo</div>
+      <div class="area-row-tag">Giudiziale · Stragiudiziale</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">08</div>
+      <div class="area-row-name">Due Diligence e Loan Management</div>
+      <div class="area-row-tag">Servicer · Analisi</div>
+    </div>
+    <div class="area-row reveal">
+      <div class="area-row-num">09</div>
+      <div class="area-row-name">Responsabilità Medica e Penale</div>
+      <div class="area-row-tag">Penale · Sanità</div>
+    </div>
+  </div>
+
+  <section style="background:var(--beige-light);padding:6rem 5%;">
+    <div class="section-label">Software Gestionali</div>
+    <h2 class="section-title">Tecnologia al servizio<br>del <em>recupero crediti</em></h2>
+    <div class="section-divider"></div>
+    <p style="max-width:700px;font-size:0.88rem;color:var(--text-muted);line-height:2;margin-bottom:1.5rem;">
+      Tutti i componenti dello studio, professionisti e collaboratori, sono specializzati, a seguito di un costante aggiornamento, nell'uso dei software gestionali multiutente utilizzati dalle banche e dalle società di gestione di NPL, tra cui <strong>EPC</strong> e <strong>PHOENIX</strong>.
+    </p>
+    <p style="max-width:700px;font-size:0.88rem;color:var(--text-muted);line-height:2;">
+      L'utilizzo dei rispettivi gestionali è affiancato da una costante e puntuale attività di aggiornamento ai referenti di volta in volta individuati, che consente un elevato livello di comunicazione e di sinergia con la clientela, nell'ottica del perseguimento dei comuni obiettivi di recupero.
+    </p>
+  </section>
+
+  <section style="background:var(--dark);padding:6rem 5%;text-align:center;">
+    <div class="section-label" style="justify-content:center">Richiedi Assistenza</div>
+    <h2 class="section-title" style="color:var(--beige-light);text-align:center;max-width:600px;margin:0 auto 2rem">
+      Hai bisogno di una<br><em>consulenza</em>?
+    </h2>
+    <p style="color:rgba(232,224,208,0.45);font-size:0.88rem;max-width:480px;margin:0 auto 2.5rem;line-height:2;">
+      I nostri professionisti sono a disposizione per valutare la vostra posizione creditoria e offrire il migliore supporto legale specializzato.
+    </p>
+    <a class="hero-cta" onclick="showPage('contatti')" style="display:inline-flex;margin:0 auto">
+      Contattaci ora
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Avv. Valerio Iorio<br>&amp; Partners starl</div>
+        <p class="footer-tagline">Specialisti in diritto bancario e NPLs. Dal 1980.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('lo-studio')">Lo Studio</a>
+        <a onclick="showPage('aree')">Aree di Competenza</a>
+        <a onclick="showPage('professionisti')">Lo Staff</a>
+        <a onclick="showPage('contatti')">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <p>Corso G. Garibaldi, 8 — 84121 Salerno</p>
+        <p>info@studiolegaleiorio.it</p>
+      </div>
+      <div class="footer-col"></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Avv. Valerio Iorio & Partners starl</p>
+      <div class="footer-links"><a>Privacy Policy</a><a>Cookie Policy</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: STAFF / PROFESSIONISTI
+══════════════════════════════════ -->
+<div class="page" id="page-professionisti">
+  <div class="lo-studio-hero" style="padding-bottom:6rem;">
+    <div class="page-header-breadcrumb">Home <span>/ Lo Staff</span></div>
+    <div class="section-label">Il Team</div>
+    <h1 class="section-title" style="color:var(--beige-light);font-size:clamp(2.5rem,4.5vw,5rem);max-width:700px">
+      I <em>Professionisti</em><br>dello Studio
+    </h1>
+    <p style="color:rgba(232,224,208,0.5);max-width:560px;margin-top:1.5rem;font-size:0.88rem;line-height:2;">
+      La consolidata esperienza dello staff assicura un'assistenza efficiente e rapida per affidabilità e competenza alle principali banche, società di gestione di NPL e società di recupero credito.
+    </p>
+  </div>
+
+  <!-- SOCI FONDATORI -->
+  <section style="background:var(--linen);padding:7rem 5% 4rem;">
+    <div class="section-label">Soci Fondatori</div>
+    <h2 class="section-title">I <em>fondatori</em></h2>
+    <div class="section-divider"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--beige-dark);margin-top:3rem;">
+
+      <div class="team-card reveal" style="display:flex;flex-direction:row;gap:0;background:var(--linen);">
+        <div style="width:180px;flex-shrink:0;background:linear-gradient(135deg,var(--beige-dark),var(--cement-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--beige-dark);font-weight:300;">VI</div>
+        <div style="padding:2.5rem;">
+          <div class="team-name" style="font-size:1.2rem;">Avv. Valerio Iorio</div>
+          <div class="team-role" style="margin-bottom:1rem;">Socio Fondatore — Patrocinante in Cassazione dal 1997</div>
+          <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.9;">Nato a Salerno il 14.04.1955, laureato in Giurisprudenza presso l'Università degli Studi di Salerno nel 1979. Cultore della materia di Diritto Internazionale, master in diritto fallimentare, relatore in convegni, curatore fallimentare. Dal 2010 al 2022 docente di diritto privato comparato presso l'università Telematica "Pegaso" e docente con contratto presso l'Università Sapienza di Roma. Patrocinante in Cassazione dal 1997, con oltre quarant'anni di esperienza in diritto bancario, fallimentare e delle esecuzioni. Legale fiduciario di primari gruppi bancari e società di gestione di NPL.</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal" style="display:flex;flex-direction:row;gap:0;background:var(--linen);">
+        <div style="width:180px;flex-shrink:0;background:linear-gradient(135deg,var(--beige-dark),var(--cement-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--beige-dark);font-weight:300;">CI</div>
+        <div style="padding:2.5rem;">
+          <div class="team-name" style="font-size:1.2rem;">Avv. Carmen Iorio</div>
+          <div class="team-role" style="margin-bottom:1rem;">Socio Fondatore — Professionista Delegato alle Vendite</div>
+          <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.9;">Nata a Salerno il 24.09.1990, laureata in Giurisprudenza presso l'Università degli Studi di Salerno nel 2015. Ha conseguito il dottorato di ricerca in Big Data Management e il Master in gestione della crisi di impresa. Cultrice della materia di Diritto Privato e professionista delegato alle vendite e custode giudiziario. Si dedica quasi esclusivamente al diritto bancario, proseguendo l'attività di collaborazione accademica con l'Università di Salerno.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- I PROFESSIONISTI -->
+  <section style="background:var(--beige-light);padding:4rem 5% 7rem;">
+    <div class="section-label">Partners & Avvocati</div>
+    <h2 class="section-title">I nostri <em>professionisti</em></h2>
+    <div class="section-divider"></div>
+    <div class="team-grid" style="margin-top:3rem;">
+
+      <div class="team-card reveal">
+        <div class="team-photo"><div class="team-photo-fallback">AC</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Antonella Camera</div>
+          <div class="team-role">Partner Principale · Cassazione dal 2023</div>
+          <div class="team-bio">Nata a Salerno il 19.07.1975. Oltre venti anni di professione forense, specializzata nel contenzioso civile e bancario di ogni ordine e grado. Professionista delegato alle vendite, membro della commissione per l'esame di abilitazione forense.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo"><div class="team-photo-fallback">CC</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Claudio Costanzo</div>
+          <div class="team-role">Avvocato · Foro di Napoli Nord</div>
+          <div class="team-bio">Nato a Napoli il 03.07.1985. Specializzato in diritto bancario, esecuzioni immobiliari, procedure fallimentari e opposizioni in fase cautelare. Solida esperienza nel contenzioso passivo di istituti di credito.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo"><div class="team-photo-fallback">GC</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Giulia Caserta</div>
+          <div class="team-role">Avvocato · Foro di Napoli</div>
+          <div class="team-bio">Nata ad Aversa il 21.05.1992. Specializzata nel contenzioso bancario attivo e passivo. Master in gestione della crisi di impresa. Esperienza in due diligence e Loan Management con primario servicer.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo"><div class="team-photo-fallback">TV</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Teresa Vergara</div>
+          <div class="team-role">Avvocato · Foro di Napoli Nord</div>
+          <div class="team-bio">Nata a Napoli il 11.03.1976. Specializzata nel contenzioso bancario e nell'avvio atti, con specifico focus alle esecuzioni immobiliari e presso terzi. Venti anni di esperienza nel settore.</div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo"><div class="team-photo-fallback">MN</div></div>
+        <div class="team-info">
+          <div class="team-name">Avv. Marco Nigro</div>
+          <div class="team-role">Partner · Penalista · Cassazione dal 2022</div>
+          <div class="team-bio">Nato ad Agropoli il 25.03.1983. Partner con specifico riguardo al contenzioso penale. Autore di manuali di diritto, specializzato nella responsabilità medica. Patrocinante in Cassazione dal 2022.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COLLABORATORI -->
+  <section style="background:var(--linen);padding:4rem 5% 7rem;">
+    <div class="section-label">Supporto Amministrativo</div>
+    <h2 class="section-title">I <em>collaboratori</em></h2>
+    <div class="section-divider"></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--beige-dark);margin-top:3rem;">
+
+      <div class="valore-item reveal" style="padding:2.5rem;">
+        <div class="valore-icon" style="font-size:1.2rem;color:var(--brass);">◈</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Sig.ra Caterina Pagano</h3>
+        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem;">Para Legal — Esperienza Ultraventennale</div>
+        <p style="font-size:0.8rem;">Responsabile di tutta l'attività di supporto agli avvocati: preparazione atti per notifiche, adempimenti telematici, gestione corrispondenza, regolarizzazione fiscale e tenuta della contabilità anche di bilancio.</p>
+      </div>
+
+      <div class="valore-item reveal" style="padding:2.5rem;">
+        <div class="valore-icon" style="font-size:1.2rem;color:var(--brass);">◈</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Sig. Vincenzo Scarpato</h3>
+        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem;">Para Legal — Contenzioso Civile</div>
+        <p style="font-size:0.8rem;">Esperienza significativa nel settore del contenzioso civile. Svolge attività di supporto agli avvocati: preparazione atti per notifiche, adempimenti telematici e gestione corrispondenza di studio.</p>
+      </div>
+
+      <div class="valore-item reveal" style="padding:2.5rem;">
+        <div class="valore-icon" style="font-size:1.2rem;color:var(--brass);">◈</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Sig.ra Giovanna Saviano</h3>
+        <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem;">Para Legal — Gestione Stragiudiziale</div>
+        <p style="font-size:0.8rem;">Specializzata nella gestione stragiudiziale dei crediti Unsec con ottima propensione alla negoziazione e alla chiusura stragiudiziale. Svolge inoltre attività di supporto agli avvocati dello studio.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Avv. Valerio Iorio<br>&amp; Partners starl</div>
+        <p class="footer-tagline">Specialisti in diritto bancario e NPLs. Dal 1980.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('lo-studio')">Lo Studio</a>
+        <a onclick="showPage('aree')">Aree di Competenza</a>
+        <a onclick="showPage('professionisti')">Lo Staff</a>
+        <a onclick="showPage('contatti')">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <p>Corso G. Garibaldi, 8 — 84121 Salerno</p>
+        <p>info@studiolegaleiorio.it</p>
+      </div>
+      <div class="footer-col"></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Avv. Valerio Iorio & Partners starl</p>
+      <div class="footer-links"><a>Privacy Policy</a><a>Cookie Policy</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: CONTATTI
+══════════════════════════════════ -->
+<div class="page" id="page-contatti">
+  <div class="contatti-hero">
+    <div class="page-header-breadcrumb">Home <span>/ Contatti</span></div>
+    <div class="section-label" style="color:var(--brass)">Siamo a disposizione</div>
+    <h1 class="section-title" style="color:var(--beige-light);font-size:clamp(2.5rem,4.5vw,5rem)">
+      Contattateci<br><em>oggi stesso</em>
+    </h1>
+    <p style="color:rgba(232,224,208,0.5);max-width:560px;margin-top:1.5rem;font-size:0.88rem;line-height:2;">
+      Il nostro team è a disposizione per rispondere alle vostre domande e fissare un appuntamento presso la nostra sede di Salerno o in qualsiasi foro italiano.
+    </p>
+  </div>
+
+  <div class="contact-section" style="padding:0;">
+    <div class="contact-left">
+      <div class="section-label" style="color:var(--brass)">Dove siamo</div>
+      <h2 class="section-title" style="color:var(--beige-light)">I nostri<br><em>recapiti</em></h2>
+      <div class="contact-details">
+        <div class="contact-item reveal">
+          <div class="contact-icon">◈</div>
+          <div>
+            <div class="contact-label">Sede Principale</div>
+            <div class="contact-value">Corso G. Garibaldi, 8<br>84121 Salerno (SA)</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">◉</div>
+          <div>
+            <div class="contact-label">Operatività</div>
+            <div class="contact-value">Tutti i fori italiani<br>tramite network convenzionato</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">⊙</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">info@studiolegaleiorio.it</div>
+          </div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-icon">◷</div>
+          <div>
+            <div class="contact-label">Orari</div>
+            <div class="contact-value">Lunedì – Venerdì<br>09:00 – 18:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <div class="section-label" style="margin-bottom:1rem">Scrivici</div>
+      <h2 class="section-title" style="color:var(--dark)">Richiedi una<br><em>consulenza</em></h2>
+      <div class="section-divider"></div>
+      <div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-input" placeholder="Mario">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cognome</label>
+            <input type="text" class="form-input" placeholder="Rossi">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="mario.rossi@email.it">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefono</label>
+          <input type="tel" class="form-input" placeholder="+39 089 000000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Area di interesse</label>
+          <input type="text" class="form-input" placeholder="es. Gestione NPLs, Diritto bancario...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Messaggio</label>
+          <textarea class="form-textarea" placeholder="Descrivete brevemente la vostra esigenza..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="alert('Messaggio inviato! Vi contatteremo al più presto.')">
+          Invia la Richiesta
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p style="font-size:0.7rem;color:var(--text-muted);margin-top:1rem;line-height:1.8;">
+          Inviando il modulo acconsenti al trattamento dei dati personali secondo la nostra Privacy Policy. I vostri dati non verranno ceduti a terzi.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Avv. Valerio Iorio<br>&amp; Partners starl</div>
+        <p class="footer-tagline">Specialisti in diritto bancario e NPLs. Dal 1980.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('lo-studio')">Lo Studio</a>
+        <a onclick="showPage('aree')">Aree di Competenza</a>
+        <a onclick="showPage('professionisti')">Lo Staff</a>
+        <a onclick="showPage('contatti')">Contatti</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <p>Corso G. Garibaldi, 8 — 84121 Salerno</p>
+        <p>info@studiolegaleiorio.it</p>
+      </div>
+      <div class="footer-col"></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 Avv. Valerio Iorio & Partners starl</p>
+      <div class="footer-links"><a>Privacy Policy</a><a>Cookie Policy</a></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const page = document.getElementById('page-' + name);
+    if (page) { page.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); triggerReveal(); }
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function triggerReveal() {
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = (i * 0.08) + 's';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.page.active .reveal').forEach(el => {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
+    }, 100);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => { triggerReveal(); });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 30px rgba(0,0,0,0.08)' : 'none';
+  });
+</script>
+</body>
+</html>
